@@ -3,7 +3,7 @@ using CSharpFunctionalExtensions;
 
 namespace Domain;
 
-class Board
+public class Board
 {
     int[][] _cells = new int[9][];
 
@@ -97,5 +97,15 @@ class Board
         return noZerosCount == countAfterUnique;
     }
 
-
+    public void Print()
+    {
+        for (int i = 0; i < 9; i++)
+        {
+            if (i == 3 || i == 6)
+            {
+                Console.WriteLine();
+            }
+            Console.WriteLine(String.Join(' ', _cells[i].Chunk(3).Select(c => String.Concat(c))));
+        }
+    }
 }

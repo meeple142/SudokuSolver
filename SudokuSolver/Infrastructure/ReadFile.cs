@@ -4,24 +4,24 @@
 namespace Infrastructure;
 public static class FileReader
 {
-    // public static int[][] Read(string path)
-    // {
-    //     int[][] board = new int[][] {
-    //         new int[] {0,0,0, 0,0,0, 0,0,0},
-    //         new int[] {0,0,0, 0,0,0, 0,0,0},
-    //         new int[] {0,0,0, 0,0,0, 0,0,0},
+    public static int[][] Read(string path)
+    {
+        int[][] board = new int[][] {
+             new int[] {0,0,0, 0,0,0, 0,0,0},
+             new int[] {0,0,0, 0,0,0, 0,0,0},
+             new int[] {0,0,0, 0,0,0, 0,0,0},
 
-    //         new int[] {0,0,0, 0,0,0, 0,0,0},
-    //         new int[] {0,0,0, 0,0,0, 0,0,0},
-    //         new int[] {0,0,0, 0,0,0, 0,0,0},
+             new int[] {0,0,0, 0,0,0, 0,0,0},
+             new int[] {0,0,0, 0,0,0, 0,0,0},
+             new int[] {0,0,0, 0,0,0, 0,0,0},
 
-    //         new int[] {0,0,0, 0,0,0, 0,0,0},
-    //         new int[] {0,0,0, 0,0,0, 0,0,0},
-    //         new int[] {0,0,0, 0,0,0, 0,0,0}
-    //         };  
-    //     return board;
-    // }
-    public static int[][] Read80(string path)
+             new int[] {0,0,0, 0,0,0, 0,0,0},
+             new int[] {0,0,0, 0,0,0, 0,0,0},
+             new int[] {0,0,0, 0,0,0, 0,0,0}
+             };
+        return board;
+    }
+    public static int[][] Read80()
     {
         int[][] board = new int[][] {
             new int[] {0,1,2, 3,4,5, 6,7,8},
@@ -38,7 +38,7 @@ public static class FileReader
             };
         return board;
     }
-    public static int[][] ReadBox(string path)
+    public static int[][] ReadBox()
     {
         int[][] board = new int[][] {
             new int[] {0,0,0, 1,1,1, 2,2,2},
@@ -55,5 +55,24 @@ public static class FileReader
         };
 
         return board;
+    }
+
+    public static int[][] BoardWithOneHole()
+    {
+        List<List<int>> rows = new();
+
+        for (int i = 0; i < 9; i++)
+        {
+            rows.Add(new List<int>());
+            for (int j = i; j < i + 9; j++)
+            {
+                rows[i].Add((j % 9) + 1);
+            }
+        }
+
+        //blank the top left cell
+        rows[0][0] = 0;
+
+        return rows.Select(row => row.ToArray()).ToArray();
     }
 }
